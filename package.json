@@ -1,0 +1,44 @@
+{
+  "name": "create-turbo-sanity",
+  "version": "1.0.0",
+  "description": "A Turborepo starter with Next.js and Sanity CMS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "format": "prettier --write .",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "sanity:deploy": "turbo run deploy --filter=studio",
+    "sanity:typegen": "turbo run typegen --filter=studio"
+  },
+  "keywords": [
+    "turborepo",
+    "nextjs",
+    "sanity",
+    "cms",
+    "typescript",
+    "starter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.29.0",
+    "prettier": "^3.6.0",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  }
+}
