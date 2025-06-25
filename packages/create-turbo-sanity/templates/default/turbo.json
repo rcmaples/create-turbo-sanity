@@ -1,0 +1,53 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "tsconfig.json",
+    "packages/typescript-config/**",
+    "packages/eslint-config/**",
+    "apps/web/.env",
+    "apps/studio/.env"
+  ],
+  "globalEnv": [
+    "SANITY_API_READ_TOKEN",
+    "VERCEL_ENV",
+    "NEXT_PUBLIC_SANITY_PROJECT_ID",
+    "NEXT_PUBLIC_SANITY_DATASET",
+    "SANITY_STUDIO_PROJECT_ID",
+    "SANITY_STUDIO_DATASET",
+    "SANITY_STUDIO_HOST"
+  ],
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "out/**"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "outputs": []
+    },
+    "typegen": {
+      "interactive": true,
+      "cache": false,
+      "persistent": true,
+      "outputs": []
+    },
+    "deploy": {
+      "interactive": true,
+      "cache": false,
+      "persistent": true,
+      "outputs": []
+    }
+  }
+}

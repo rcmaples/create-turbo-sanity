@@ -1,0 +1,50 @@
+{
+  "name": "create-turbo-sanity",
+  "version": "1.0.0",
+  "description": "Create a new Turbo + Next.js + Sanity monorepo",
+  "keywords": [
+    "turbo",
+    "turborepo",
+    "nextjs",
+    "sanity",
+    "cms",
+    "create-turbo-sanity",
+    "monorepo"
+  ],
+  "homepage": "https://github.com/your-username/create-turbo-sanity",
+  "bugs": {
+    "url": "https://github.com/your-username/create-turbo-sanity/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/create-turbo-sanity.git",
+    "directory": "packages/create-turbo-sanity"
+  },
+  "license": "MIT",
+  "author": "Your Name <your.email@example.com>",
+  "bin": "./index.js",
+  "files": [
+    "index.js",
+    "templates/**",
+    "src/**"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@sanity/cli": "^3.94.2",
+    "@sanity/client": "^7.6.0",
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "cross-spawn": "^7.0.3",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^8.2.5",
+    "ora": "^5.4.1",
+    "resolve-pkg": "^2.0.0",
+    "validate-npm-package-name": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
