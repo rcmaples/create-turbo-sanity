@@ -1,6 +1,6 @@
 {
   "name": "create-turbo-sanity",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Create a new Turbo + Next.js + Sanity monorepo",
   "keywords": [
     "turbo",
@@ -9,28 +9,43 @@
     "sanity",
     "cms",
     "create-turbo-sanity",
-    "monorepo"
+    "monorepo",
+    "starter",
+    "template",
+    "scaffold",
+    "cli"
   ],
-  "homepage": "https://github.com/your-username/create-turbo-sanity",
+  "homepage": "https://github.com/rc-maples/create-turbo-sanity",
   "bugs": {
-    "url": "https://github.com/your-username/create-turbo-sanity/issues"
+    "url": "https://github.com/rc-maples/create-turbo-sanity/issues"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.10.6",
+    "@types/validate-npm-package-name": "^4.0.2",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vitest-globals": "^1.4.0",
+    "vitest": "^1.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/create-turbo-sanity.git",
+    "url": "git+https://github.com/rc-maples/create-turbo-sanity.git",
     "directory": "packages/create-turbo-sanity"
   },
   "license": "MIT",
-  "author": "Your Name <your.email@example.com>",
+  "author": "RC Maples <rc.maples@gmail.com>",
   "bin": "./index.js",
   "files": [
     "index.js",
     "templates/**",
-    "src/**"
+    "src/**",
+    "README.md"
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "vitest"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@sanity/cli": "^3.94.2",

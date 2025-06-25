@@ -1,167 +1,157 @@
 # Create Turbo Sanity
 
-A modern Turborepo starter template with Next.js 15 and Sanity CMS.
+A professional-grade package for scaffolding modern Turborepo + Next.js + Sanity CMS projects.
 
-## What's Inside?
+## Quick Start
 
-This turborepo includes the following packages/apps:
+Create a new project with a single command:
 
-### Apps and Packages
-
-- `web`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `studio`: a [Sanity Studio](https://www.sanity.io/) app for content management
-- `@workspace/eslint-config`: shared `eslint` configurations
-- `@workspace/typescript-config`: shared `tsconfig.json`s used throughout the monorepo
-
-### Utilities
-
-This turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 20 or later
-- [pnpm](https://pnpm.io/) package manager
-- A [Sanity.io](https://www.sanity.io/) account
-
-### Setup
-
-1. **Clone the repository**
-
-   ```bash
-   git clone <your-repo-url>
-   cd create-turbo-sanity
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   pnpm install
-   ```
-
-3. **Set up Sanity**
-
-   Create a new Sanity project at [sanity.io/manage](https://www.sanity.io/manage) and note your:
-   - Project ID
-   - Dataset name (usually 'production' or 'development')
-
-4. **Configure environment variables**
-
-   Copy the environment files and fill in your Sanity details:
-
-   ```bash
-   # Root environment
-   cp env.example .env.local
-
-   # Web app environment
-   cp apps/web/env.example apps/web/.env.local
-
-   # Studio environment
-   cp apps/studio/env.example apps/studio/.env.local
-   ```
-
-   Update the following variables in all `.env.local` files:
-
-   ```bash
-   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
-   NEXT_PUBLIC_SANITY_DATASET=production
-   SANITY_API_READ_TOKEN=your-read-token # Optional, for private datasets
-   ```
-
-5. **Update Sanity configuration**
-
-   Edit the following files to match your project:
-   - `apps/studio/sanity.config.ts` - Update project name and title
-   - `apps/studio/sanity.cli.ts` - Update studioHost
-
-6. **Start development servers**
-
-   ```bash
-   pnpm dev
-   ```
-
-   This will start:
-   - Web app: http://localhost:3000
-   - Sanity Studio: http://localhost:3333
-
-## Project Structure
-
+```bash
+npm create turbo-sanity my-app
 ```
+
+This will:
+1. 🔐 Authenticate you with Sanity
+2. 📋 Let you select or create a Sanity project
+3. 📊 Set up datasets for your content
+4. 🏗️ Generate a complete monorepo with Next.js and Sanity Studio
+5. ⚙️ Configure environment variables automatically
+6. 📦 Install all dependencies
+
+## What You Get
+
+### Project Structure
+```
+my-app/
 ├── apps/
-│   ├── web/           # Next.js frontend
+│   ├── web/           # Next.js 15 app with App Router
 │   └── studio/        # Sanity Studio CMS
 ├── packages/
-│   ├── eslint-config/ # Shared ESLint config
-│   └── typescript-config/ # Shared TypeScript config
-├── package.json       # Root package.json
-├── turbo.json        # Turborepo configuration
-└── pnpm-workspace.yaml # PNPM workspace configuration
+│   ├── eslint-config/ # Shared ESLint configuration
+│   └── typescript-config/ # Shared TypeScript configuration
+├── turbo.json         # Turborepo configuration
+└── package.json       # Workspace configuration
+```
+
+### Tech Stack
+- **[Next.js 15](https://nextjs.org/)** - React framework with App Router and React 19
+- **[Sanity](https://www.sanity.io/)** - Headless CMS with real-time collaboration
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Turborepo](https://turbo.build/)** - High-performance build system for monorepos
+- **[TypeScript](https://www.typescriptlang.org/)** - Static type checking
+- **[PNPM](https://pnpm.io/)** - Fast, disk space efficient package manager
+
+### Features
+- 🚀 **Modern Development**: Latest Next.js with App Router, React 19, TypeScript
+- 📝 **Content Management**: Full-featured Sanity Studio with rich content editing
+- 🎨 **Beautiful UI**: Tailwind CSS with Typography plugin for blog-style content
+- 🔧 **Developer Experience**: ESLint, Prettier, Hot Module Reloading
+- 📦 **Monorepo Ready**: Organized with Turborepo for easy scaling
+- 🌐 **SEO Optimized**: Meta tags, Open Graph, structured data out of the box
+- 📱 **Responsive Design**: Mobile-first approach with modern CSS
+- ⚡ **Performance**: Optimized images, static generation, CDN ready
+- 🔒 **Type Safety**: End-to-end TypeScript with Sanity schema generation
+
+## CLI Options
+
+```bash
+npm create turbo-sanity [project-name] [options]
+```
+
+### Options
+- `--project <projectId>` - Use specific Sanity project ID
+- `--dataset <dataset>` - Use specific dataset name
+- `--organization <orgId>` - Use specific Sanity organization
+- `--template <template>` - Project template (default: 'default')
+- `--package-manager <manager>` - Package manager: npm, yarn, pnpm (default: pnpm)
+- `--yes` - Skip interactive prompts, use defaults
+
+### Examples
+```bash
+# Interactive setup (recommended)
+npm create turbo-sanity my-blog
+
+# With specific options
+npm create turbo-sanity my-blog --project abc123 --dataset production
+
+# Unattended installation
+npm create turbo-sanity my-blog --yes --project abc123 --dataset production
 ```
 
 ## Development
 
+After creating your project:
+
+```bash
+cd my-app
+pnpm dev
+```
+
+This starts:
+- **Next.js app**: http://localhost:3000
+- **Sanity Studio**: http://localhost:3333
+
 ### Available Scripts
-
 - `pnpm dev` - Start all development servers
-- `pnpm build` - Build all packages and apps
-- `pnpm lint` - Lint all packages and apps
-- `pnpm typecheck` - Type check all packages and apps
-- `pnpm format` - Format code with Prettier
+- `pnpm build` - Build all apps and packages
+- `pnpm lint` - Lint all code
+- `pnpm typecheck` - Type check all packages
 - `pnpm sanity:deploy` - Deploy Sanity Studio
-- `pnpm sanity:typegen` - Generate TypeScript types from Sanity schema
-
-### Adding Content
-
-1. Start the development servers with `pnpm dev`
-2. Visit the Sanity Studio at http://localhost:3000/studio
-3. Create your first post and author
-4. Visit http://localhost:3000 to see your content
+- `pnpm sanity:typegen` - Generate TypeScript types from schema
 
 ## Deployment
 
-### Deploying the Web App
-
-The easiest way to deploy the Next.js app is to use [Vercel](https://vercel.com):
-
+### Next.js App (Vercel - Recommended)
 1. Push your code to GitHub
-2. Import your repository in Vercel
-3. Add your environment variables in Vercel's dashboard
+2. Import repository in [Vercel](https://vercel.com)
+3. Environment variables are automatically configured
 4. Deploy!
 
-### Deploying Sanity Studio
-
-Deploy your Sanity Studio to make it accessible to content editors:
-
+### Sanity Studio
 ```bash
-cd apps/studio
-pnpm sanity deploy
+pnpm sanity:deploy
 ```
+Your studio will be available at `https://your-project.sanity.studio`
 
-## Built With
+### Other Platforms
+The generated project works with any Node.js hosting provider:
+- Netlify
+- Railway
+- DigitalOcean App Platform  
+- AWS Amplify
 
-- **[Next.js 15](https://nextjs.org/)** - React framework with App Router
-- **[Sanity](https://www.sanity.io/)** - Headless CMS
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[Turborepo](https://turbo.build/)** - High-performance build system
-- **[TypeScript](https://www.typescriptlang.org/)** - Static type checking
-- **[PNPM](https://pnpm.io/)** - Fast, disk space efficient package manager
+## Contributing
 
-## Features
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+- Development setup
+- Commit conventions
+- Release process
+- Testing guidelines
 
-- 🚀 **Modern Stack**: Next.js 15 with App Router, React 19, TypeScript
-- 📝 **Content Management**: Sanity Studio with rich content types
-- 🎨 **Styling**: Tailwind CSS with Typography plugin
-- 🔧 **Developer Experience**: ESLint, Prettier, Hot Module Reloading
-- 📦 **Monorepo**: Organized with Turborepo for scalability
-- 🌐 **SEO Ready**: Meta tags, Open Graph, structured data
-- 📱 **Responsive**: Mobile-first design
-- ⚡ **Performance**: Optimized images, static generation, CDN ready
+## Automatic Updates
+
+This project uses [Renovate](https://renovatebot.com/) to keep dependencies up-to-date automatically. Updates are grouped by category and scheduled weekly.
+
+## Versioning
+
+This project follows [Semantic Versioning](https://semver.org/) with automated releases:
+- `feat:` commits trigger minor releases (1.1.0)
+- `fix:` commits trigger patch releases (1.0.1)  
+- `feat!:` commits trigger major releases (2.0.0)
+
+## Requirements
+
+- **Node.js** 18 or later
+- **Package Manager**: npm, yarn, or pnpm
+- **Sanity Account**: Free at [sanity.io](https://www.sanity.io/)
+
+## Support
+
+- 📚 [Documentation](https://github.com/your-username/create-turbo-sanity/blob/main/README.md)
+- 🐛 [Report Issues](https://github.com/your-username/create-turbo-sanity/issues)
+- 💬 [Discussions](https://github.com/your-username/create-turbo-sanity/discussions)
+- 🚀 [Sanity Community](https://www.sanity.io/community)
 
 ## License
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
