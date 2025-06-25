@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.0...v1.0.1) (2025-06-25)
+
+
+### Bug Fixes
+
+*  correct GitHub URLs and update CI to use Node.js 22 ([f38f09f](https://github.com/rcmaples/create-turbo-sanity/commit/f38f09f62969535d925a8b67076835f69512b8a0))
+
 # 1.0.0 (2025-06-25)
 
 
