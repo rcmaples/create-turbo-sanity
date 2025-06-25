@@ -237,6 +237,7 @@ async function selectOrCreateProject(user, options) {
     
     const organizationId = await selectOrganization(organizations, options)
     
+    const client = getSanityClient({ token })
     return createProject(client, {
       displayName: projectName.trim(),
       organizationId
@@ -274,6 +275,7 @@ async function selectOrCreateProject(user, options) {
     
     const organizationId = await selectOrganization(organizations, options)
     
+    const client = getSanityClient({ token })
     return createProject(client, {
       displayName: projectName.trim(),
       organizationId

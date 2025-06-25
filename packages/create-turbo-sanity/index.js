@@ -8,10 +8,10 @@ const spawn = require('cross-spawn')
 const inquirer = require('inquirer')
 const ora = require('ora')
 const validateProjectName = require('validate-npm-package-name')
-const { getSanityClient, authenticateUser, selectOrCreateProject, selectOrCreateDataset } = require('./src/sanity-utils')
+const { authenticateUser, selectOrCreateProject, selectOrCreateDataset } = require('./src/sanity-utils')
 const { createProjectStructure, updateEnvFiles } = require('./src/template-utils')
 
-let projectName
+
 
 program
   .name('create-turbo-sanity')
@@ -24,9 +24,8 @@ program
   .option('--organization <organizationId>', 'Sanity organization ID to use')
   .option('--template <template>', 'project template to use', 'default')
   .option('--package-manager <manager>', 'package manager to use (npm, yarn, pnpm)', 'pnpm')
-  .action(async (name, options) => {
-    projectName = name
-    await createTurboSanityApp(name, options)
+  .action(async (name, _options) => {
+    await createTurboSanityApp(name, _options)
   })
 
 program.parse()
@@ -100,7 +99,7 @@ async function createTurboSanityApp(name, options) {
   }
 }
 
-async function getProjectDirectory(name, options) {
+async function getProjectDirectory(name, _options) {
   let projectName = name
   
   if (!projectName) {

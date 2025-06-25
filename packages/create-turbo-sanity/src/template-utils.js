@@ -2,11 +2,10 @@
 
 const fs = require('fs-extra')
 const path = require('path')
-const chalk = require('chalk')
 const ora = require('ora')
 
 async function createProjectStructure(projectDir, config) {
-  const { projectName, displayName, projectId, datasetName, template } = config
+  const { template } = config
   
   const spinner = ora('Creating project structure...').start()
   

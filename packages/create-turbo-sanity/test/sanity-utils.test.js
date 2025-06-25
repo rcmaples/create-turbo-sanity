@@ -1,1 +1,159 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'\nimport fs from 'fs-extra'\nimport path from 'path'\nimport os from 'os'\nimport { createTempDir, cleanupTempDir, createMockSanityConfig } from './utils.js'\n\n// We need to mock the modules before importing\nvi.mock('https', () => ({\n  request: vi.fn()\n}))\n\nvi.mock('cross-spawn', () => ({\n  sync: vi.fn()\n}))\n\nconst mockHttpsRequest = vi.hoisted(() => vi.fn())\nvi.mock('https', () => ({\n  request: mockHttpsRequest\n}))\n\n// Import after mocking\nconst { makeApiRequest } = await import('../src/sanity-utils.js')\n\ndescribe('Sanity Utils', () => {\n  let tempDir\n  let mockConfigPath\n  \n  beforeEach(async () => {\n    tempDir = await createTempDir()\n    mockConfigPath = path.join(tempDir, '.config', 'sanity', 'config')\n    \n    // Mock os.homedir to return our temp directory\n    vi.spyOn(os, 'homedir').mockReturnValue(tempDir)\n  })\n  \n  afterEach(async () => {\n    await cleanupTempDir(tempDir)\n    vi.restoreAllMocks()\n  })\n\n  describe('getUserConfig', () => {\n    it('should return empty object when no config exists', async () => {\n      const { getUserConfig } = await import('../src/sanity-utils.js')\n      const config = getUserConfig()\n      expect(config).toEqual({})\n    })\n\n    it('should read config from standard location', async () => {\n      const { getUserConfig } = await import('../src/sanity-utils.js')\n      \n      // Create mock config file\n      const mockConfig = createMockSanityConfig('test-token')\n      await fs.ensureDir(path.dirname(mockConfigPath))\n      await fs.writeFile(mockConfigPath, JSON.stringify(mockConfig))\n      \n      const config = getUserConfig()\n      expect(config.authToken).toBe('test-token')\n    })\n\n    it('should try alternative config locations', async () => {\n      const { getUserConfig } = await import('../src/sanity-utils.js')\n      \n      // Create config in alternative location\n      const altPath = path.join(tempDir, '.sanity', 'config')\n      const mockConfig = createMockSanityConfig('alt-token')\n      await fs.ensureDir(path.dirname(altPath))\n      await fs.writeFile(altPath, JSON.stringify(mockConfig))\n      \n      const config = getUserConfig()\n      expect(config.authToken).toBe('alt-token')\n    })\n\n    it('should handle invalid JSON gracefully', async () => {\n      const { getUserConfig } = await import('../src/sanity-utils.js')\n      \n      // Create invalid JSON file\n      await fs.ensureDir(path.dirname(mockConfigPath))\n      await fs.writeFile(mockConfigPath, 'invalid json')\n      \n      const config = getUserConfig()\n      expect(config).toEqual({})\n    })\n  })\n\n  describe('makeApiRequest', () => {\n    it('should make successful API request', async () => {\n      const mockResponse = { id: 'user123', email: 'test@example.com' }\n      const mockRes = {\n        statusCode: 200,\n        on: vi.fn((event, callback) => {\n          if (event === 'data') {\n            callback(JSON.stringify(mockResponse))\n          } else if (event === 'end') {\n            callback()\n          }\n        })\n      }\n      \n      const mockReq = {\n        on: vi.fn(),\n        write: vi.fn(),\n        end: vi.fn()\n      }\n      \n      mockHttpsRequest.mockImplementation((options, callback) => {\n        callback(mockRes)\n        return mockReq\n      })\n      \n      const result = await makeApiRequest('/users/me', 'test-token')\n      expect(result).toEqual(mockResponse)\n    })\n\n    it('should handle API errors', async () => {\n      const mockErrorResponse = { message: 'Unauthorized' }\n      const mockRes = {\n        statusCode: 401,\n        on: vi.fn((event, callback) => {\n          if (event === 'data') {\n            callback(JSON.stringify(mockErrorResponse))\n          } else if (event === 'end') {\n            callback()\n          }\n        })\n      }\n      \n      const mockReq = {\n        on: vi.fn(),\n        write: vi.fn(),\n        end: vi.fn()\n      }\n      \n      mockHttpsRequest.mockImplementation((options, callback) => {\n        callback(mockRes)\n        return mockReq\n      })\n      \n      await expect(makeApiRequest('/users/me', 'invalid-token'))\n        .rejects.toThrow('API Error: Unauthorized')\n    })\n\n    it('should handle network errors', async () => {\n      const mockReq = {\n        on: vi.fn((event, callback) => {\n          if (event === 'error') {\n            callback(new Error('Network error'))\n          }\n        }),\n        write: vi.fn(),\n        end: vi.fn()\n      }\n      \n      mockHttpsRequest.mockImplementation(() => mockReq)\n      \n      await expect(makeApiRequest('/users/me', 'test-token'))\n        .rejects.toThrow('Network error')\n    })\n  })\n})\n
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import fs from 'fs-extra'
+import path from 'path'
+import os from 'os'
+import { createTempDir, cleanupTempDir, createMockSanityConfig } from './utils.js'
+
+// We need to mock the modules before importing
+vi.mock('https', () => ({
+  request: vi.fn()
+}))
+
+vi.mock('cross-spawn', () => ({
+  sync: vi.fn()
+}))
+
+const mockHttpsRequest = vi.hoisted(() => vi.fn())
+vi.mock('https', () => ({
+  request: mockHttpsRequest
+}))
+
+// Import after mocking
+const { makeApiRequest } = await import('../src/sanity-utils.js')
+
+describe('Sanity Utils', () => {
+  let tempDir
+  let mockConfigPath
+  
+  beforeEach(async () => {
+    tempDir = await createTempDir()
+    mockConfigPath = path.join(tempDir, '.config', 'sanity', 'config')
+    
+    // Mock os.homedir to return our temp directory
+    vi.spyOn(os, 'homedir').mockReturnValue(tempDir)
+  })
+  
+  afterEach(async () => {
+    await cleanupTempDir(tempDir)
+    vi.restoreAllMocks()
+  })
+
+  describe('getUserConfig', () => {
+    it('should return empty object when no config exists', async () => {
+      const { getUserConfig } = await import('../src/sanity-utils.js')
+      const config = getUserConfig()
+      expect(config).toEqual({})
+    })
+
+    it('should read config from standard location', async () => {
+      const { getUserConfig } = await import('../src/sanity-utils.js')
+      
+      // Create mock config file
+      const mockConfig = createMockSanityConfig('test-token')
+      await fs.ensureDir(path.dirname(mockConfigPath))
+      await fs.writeFile(mockConfigPath, JSON.stringify(mockConfig))
+      
+      const config = getUserConfig()
+      expect(config.authToken).toBe('test-token')
+    })
+
+    it('should try alternative config locations', async () => {
+      const { getUserConfig } = await import('../src/sanity-utils.js')
+      
+      // Create config in alternative location
+      const altPath = path.join(tempDir, '.sanity', 'config')
+      const mockConfig = createMockSanityConfig('alt-token')
+      await fs.ensureDir(path.dirname(altPath))
+      await fs.writeFile(altPath, JSON.stringify(mockConfig))
+      
+      const config = getUserConfig()
+      expect(config.authToken).toBe('alt-token')
+    })
+
+    it('should handle invalid JSON gracefully', async () => {
+      const { getUserConfig } = await import('../src/sanity-utils.js')
+      
+      // Create invalid JSON file
+      await fs.ensureDir(path.dirname(mockConfigPath))
+      await fs.writeFile(mockConfigPath, 'invalid json')
+      
+      const config = getUserConfig()
+      expect(config).toEqual({})
+    })
+  })
+
+  describe('makeApiRequest', () => {
+    it('should make successful API request', async () => {
+      const mockResponse = { id: 'user123', email: 'test@example.com' }
+      const mockRes = {
+        statusCode: 200,
+        on: vi.fn((event, callback) => {
+          if (event === 'data') {
+            callback(JSON.stringify(mockResponse))
+          } else if (event === 'end') {
+            callback()
+          }
+        })
+      }
+      
+      const mockReq = {
+        on: vi.fn(),
+        write: vi.fn(),
+        end: vi.fn()
+      }
+      
+      mockHttpsRequest.mockImplementation((options, callback) => {
+        callback(mockRes)
+        return mockReq
+      })
+      
+      const result = await makeApiRequest('/users/me', 'test-token')
+      expect(result).toEqual(mockResponse)
+    })
+
+    it('should handle API errors', async () => {
+      const mockErrorResponse = { message: 'Unauthorized' }
+      const mockRes = {
+        statusCode: 401,
+        on: vi.fn((event, callback) => {
+          if (event === 'data') {
+            callback(JSON.stringify(mockErrorResponse))
+          } else if (event === 'end') {
+            callback()
+          }
+        })
+      }
+      
+      const mockReq = {
+        on: vi.fn(),
+        write: vi.fn(),
+        end: vi.fn()
+      }
+      
+      mockHttpsRequest.mockImplementation((options, callback) => {
+        callback(mockRes)
+        return mockReq
+      })
+      
+      await expect(makeApiRequest('/users/me', 'invalid-token'))
+        .rejects.toThrow('API Error: Unauthorized')
+    })
+
+    it('should handle network errors', async () => {
+      const mockReq = {
+        on: vi.fn((event, callback) => {
+          if (event === 'error') {
+            callback(new Error('Network error'))
+          }
+        }),
+        write: vi.fn(),
+        end: vi.fn()
+      }
+      
+      mockHttpsRequest.mockImplementation(() => mockReq)
+      
+      await expect(makeApiRequest('/users/me', 'test-token'))
+        .rejects.toThrow('Network error')
+    })
+  })
+})

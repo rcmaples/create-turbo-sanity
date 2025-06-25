@@ -1,1 +1,33 @@
-module.exports = {\n  env: {\n    node: true,\n    es2022: true\n  },\n  extends: [\n    'eslint:recommended'\n  ],\n  parserOptions: {\n    ecmaVersion: 'latest',\n    sourceType: 'module'\n  },\n  rules: {\n    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],\n    'no-console': 'off'\n  },\n  overrides: [\n    {\n      files: ['test/**/*.js'],\n      env: {\n        node: true,\n        'vitest-globals/env': true\n      },\n      extends: [\n        'plugin:vitest-globals/recommended'\n      ],\n      rules: {\n        'no-unused-expressions': 'off'\n      }\n    }\n  ]\n}\n
+module.exports = {
+  root: true, // This prevents ESLint from looking for config files in parent directories
+  env: {
+    node: true,
+    es2022: true
+  },
+  extends: [
+    'eslint:recommended'
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
+  rules: {
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-console': 'off'
+  },
+  overrides: [
+    {
+      files: ['test/**/*.js'],
+      env: {
+        node: true,
+        'vitest-globals/env': true
+      },
+      extends: [
+        'plugin:vitest-globals/recommended'
+      ],
+      rules: {
+        'no-unused-expressions': 'off'
+      }
+    }
+  ]
+}

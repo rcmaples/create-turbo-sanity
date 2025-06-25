@@ -5,6 +5,7 @@ import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
 import {draftMode} from 'next/headers'
 import {type PortableTextBlock, toPlainText, VisualEditing} from 'next-sanity'
+import type React from 'react'
 
 import {sanityFetch} from '../../lib/sanity/fetch'
 import {settingsQuery} from '../../lib/sanity/queries'
