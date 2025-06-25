@@ -36,19 +36,30 @@ async function createTurboSanityApp(name, options) {
   console.log(chalk.cyan('create-turbo-sanity'))
   console.log()
 
-  // Step 1: Get project directory
-  const projectDir = await getProjectDirectory(name, options)
-  
-  // Step 2: Authenticate with Sanity
+  // Step 1: Authenticate with Sanity
   console.log(chalk.blue('🔐 Authenticating with Sanity...'))
   const user = await authenticateUser(options)
+  console.log()
   
-  // Step 3: Select or create project and dataset
+  // Step 2: Select or create project
   console.log(chalk.blue('📋 Setting up Sanity project...'))
+  console.log('Fetching existing projects...')
   const { projectId, displayName, isFirstProject } = await selectOrCreateProject(user, options)
-  const { datasetName } = await selectOrCreateDataset(projectId, options)
+  console.log(chalk.green(`✅ Using project: ${displayName} (${projectId})`))
+  console.log()
   
-  // Step 4: Create project structure
+  // Step 3: Select or create dataset
+  console.log(chalk.blue('📈 Setting up dataset...'))
+  const { datasetName } = await selectOrCreateDataset(projectId, options)
+  console.log(chalk.green(`✅ Using dataset: ${datasetName}`))
+  console.log()
+  
+  // Step 4: Get project directory
+  const projectDir = await getProjectDirectory(name, options)
+  console.log(chalk.green(`✅ Creating project in: ${projectDir}`))
+  console.log()
+  
+  // Step 5: Create project structure
   console.log(chalk.blue('📁 Creating project structure...'))
   await createProjectStructure(projectDir, {
     projectName: path.basename(projectDir),
@@ -58,15 +69,15 @@ async function createTurboSanityApp(name, options) {
     template: options.template || 'default'
   })
   
-  // Step 5: Update environment files
+  // Step 6: Update environment files
   console.log(chalk.blue('🔧 Configuring environment variables...'))
   await updateEnvFiles(projectDir, projectId, datasetName)
   
-  // Step 6: Install dependencies
+  // Step 7: Install dependencies
   console.log(chalk.blue('📦 Installing dependencies...'))
   await installDependencies(projectDir, options.packageManager || 'pnpm')
   
-  // Step 7: Success message
+  // Step 8: Success message
   console.log()
   console.log(chalk.green('✅ Success! Your Turbo + Sanity monorepo has been created.'))
   console.log()

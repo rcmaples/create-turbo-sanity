@@ -7,33 +7,98 @@ const ora = require('ora')
 const spawn = require('cross-spawn')
 const path = require('path')
 const fs = require('fs')
+const https = require('https')
 
 // Get user config similar to how Sanity CLI does it
 function getUserConfig() {
   const os = require('os')
-  const configPath = path.join(os.homedir(), '.config', 'sanity', 'config')
   
-  try {
-    if (fs.existsSync(configPath)) {
-      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'))
-      return config
+  // Try multiple possible config locations
+  const possiblePaths = [
+    path.join(os.homedir(), '.config', 'sanity', 'config'),
+    path.join(os.homedir(), '.sanity', 'config'),
+    path.join(os.homedir(), '.config', 'sanity', 'config.json'),
+    path.join(os.homedir(), '.sanity', 'config.json'),
+    path.join(os.homedir(), '.config', '@sanity', 'cli', 'config'),
+    path.join(os.homedir(), '.sanity-cli', 'config')
+  ]
+  
+  for (const configPath of possiblePaths) {
+    try {
+      if (fs.existsSync(configPath)) {
+        const configContent = fs.readFileSync(configPath, 'utf8')
+        const config = JSON.parse(configContent)
+        return config
+      }
+    } catch (err) {
+      // Continue to next path if this one fails
     }
-  } catch (err) {
-    // Config file doesn't exist or is invalid
   }
   
   return {}
 }
 
+// Make direct HTTP requests to Sanity API without needing a projectId
+async function makeApiRequest(path, token, method = 'GET', body = null) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: 'api.sanity.io',
+      port: 443,
+      path: `/v2023-05-03${path}`,
+      method,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const req = https.request(options, (res) => {
+      let data = ''
+      
+      res.on('data', (chunk) => {
+        data += chunk
+      })
+      
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data)
+          if (res.statusCode >= 400) {
+            reject(new Error(`API Error: ${parsed.message || 'Unknown error'}`))
+          } else {
+            resolve(parsed)
+          }
+        } catch (err) {
+          reject(new Error(`Failed to parse response: ${err.message}`))
+        }
+      })
+    })
+
+    req.on('error', (err) => {
+      reject(err)
+    })
+
+    if (body) {
+      req.write(JSON.stringify(body))
+    }
+
+    req.end()
+  })
+}
+
 function getSanityClient(options = {}) {
   const userConfig = getUserConfig()
   
-  return createClient({
+  const config = {
     apiVersion: '2023-05-03',
     useCdn: false,
     token: userConfig.authToken,
     ...options
-  })
+  }
+  
+  // Don't add projectId for general API calls
+  // The client will use api.sanity.io instead of project-specific URLs
+  
+  return createClient(config)
 }
 
 async function authenticateUser(options) {
@@ -42,12 +107,7 @@ async function authenticateUser(options) {
   if (userConfig.authToken) {
     // User is already authenticated, verify the token works
     try {
-      const client = getSanityClient()
-      const user = await client.request({
-        method: 'GET',
-        uri: 'users/me'
-      })
-      
+      const user = await makeApiRequest('/users/me', userConfig.authToken)
       console.log(chalk.green(`✅ You are logged in as ${user.email}`))
       return user
     } catch (err) {
@@ -72,25 +132,45 @@ async function authenticateUser(options) {
   }
   
   // Get user info after successful authentication
-  const client = getSanityClient()
-  const user = await client.request({
-    method: 'GET',
-    uri: 'users/me'
-  })
+  // Wait a moment for the auth token to be written to disk
+  await new Promise(resolve => setTimeout(resolve, 2000))
   
+  // Try to refresh the user config multiple times
+  let updatedConfig = null
+  let attempts = 0
+  const maxAttempts = 5
+  
+  while (!updatedConfig?.authToken && attempts < maxAttempts) {
+    attempts++
+    updatedConfig = getUserConfig()
+    
+    if (!updatedConfig?.authToken) {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    }
+  }
+  
+  if (!updatedConfig?.authToken) {
+    throw new Error('Authentication completed but token not found. Please try running `sanity login` manually and try again.')
+  }
+  
+  const user = await makeApiRequest('/users/me', updatedConfig.authToken)
+  
+  console.log(chalk.green(`✅ Login successful! Welcome, ${user.email}`))
   return user
 }
 
 async function selectOrCreateProject(user, options) {
-  const client = getSanityClient()
+  const userConfig = getUserConfig()
+  const token = userConfig.authToken
+  
+  if (!token) {
+    throw new Error('No authentication token found')
+  }
   
   // If project ID is specified, validate and use it
   if (options.project) {
     try {
-      const project = await client.request({
-        method: 'GET',
-        uri: `/projects/${options.project}`
-      })
+      const project = await makeApiRequest(`/projects/${options.project}`, token)
       
       return {
         projectId: options.project,
@@ -107,10 +187,13 @@ async function selectOrCreateProject(user, options) {
   let organizations = []
   
   try {
-    [projects, organizations] = await Promise.all([
-      client.request({ uri: '/projects?includeMembers=false' }),
-      client.request({ uri: '/organizations' })
+    const [projectsResult, organizationsResult] = await Promise.all([
+      makeApiRequest('/projects?includeMembers=false', token),
+      makeApiRequest('/organizations', token)
     ])
+    
+    projects = projectsResult
+    organizations = organizationsResult
     
     projects = projects.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
   } catch (err) {

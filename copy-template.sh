@@ -78,6 +78,8 @@ A modern monorepo starter built with:
 - **[Sanity](https://www.sanity.io/)** for content management
 - **[TypeScript](https://www.typescriptlang.org/)** for type safety
 - **[Tailwind CSS](https://tailwindcss.com/)** for styling
+- Sample blog schemas
+- Next.js configured like a sample blog
 
 ## Project Structure
 
