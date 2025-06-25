@@ -525,5 +525,7 @@ module.exports = {
   getSanityClient,
   authenticateUser,
   selectOrCreateProject,
-  selectOrCreateDataset
+  selectOrCreateDataset,
+  getUserConfig,
+  makeApiRequest
 }
