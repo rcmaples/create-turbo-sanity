@@ -1,7 +1,7 @@
 {
-  "name": "create-turbo-sanity",
-  "version": "0.1.0",
-  "description": "A Turborepo starter with Next.js and Sanity CMS",
+  "name": "{{PROJECT_NAME}}",
+  "version": "1.0.0",
+  "description": "{{DISPLAY_NAME}} - A Turborepo starter with Next.js and Sanity CMS",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,10 +13,7 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "sanity:deploy": "turbo run deploy --filter=studio",
-    "sanity:typegen": "turbo run typegen --filter=studio",
-    "prepare": "husky install",
-    "commit": "git-cz",
-    "release": "semantic-release"
+    "sanity:typegen": "turbo run typegen --filter=studio"
   },
   "keywords": [
     "turborepo",
@@ -26,32 +23,17 @@
     "typescript",
     "starter"
   ],
-  "author": "RC Maples <rc@rcmaples.io>",
+  "author": "",
   "license": "MIT",
   "packageManager": "pnpm@10.12.3",
   "devDependencies": {
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^9.2.6",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
-    "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.29.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
     "prettier": "^3.6.0",
-    "semantic-release": "^22.0.12",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "prettier": {
     "semi": false,

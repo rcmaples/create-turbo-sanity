@@ -1,0 +1,2 @@
+# Ignore templates to prevent React plugin from trying to lint them
+templates/

@@ -1,0 +1,24 @@
+# Global owners
+* @rc-maples
+
+# CLI package
+packages/create-turbo-sanity/ @rc-maples
+
+# Template files
+packages/create-turbo-sanity/templates/ @rc-maples
+
+# GitHub workflows and config
+.github/ @rc-maples
+*.yml @rc-maples
+*.yaml @rc-maples
+
+# Configuration files
+*.config.js @rc-maples
+*.config.ts @rc-maples
+.releaserc.json @rc-maples
+renovate.json @rc-maples
+commitlint.config.js @rc-maples
+
+# Documentation
+*.md @rc-maples
+docs/ @rc-maples

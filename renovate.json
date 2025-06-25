@@ -1,0 +1,70 @@
+{
+  "extends": ["config:base"],
+  "schedule": ["before 9am on monday"],
+  "packageRules": [
+    {
+      "matchPaths": ["packages/create-turbo-sanity/templates/**"],
+      "groupName": "template dependencies",
+      "description": "Group all template dependency updates together",
+      "schedule": ["before 9am on monday"],
+      "automerge": false,
+      "reviewersFromCodeOwners": true
+    },
+    {
+      "matchPaths": ["packages/create-turbo-sanity/package.json"],
+      "groupName": "create package dependencies",
+      "description": "Group CLI tool dependencies",
+      "schedule": ["before 9am on monday"],
+      "automerge": false
+    },
+    {
+      "matchPaths": ["package.json"],
+      "groupName": "root dependencies",
+      "description": "Group root workspace dependencies",
+      "schedule": ["before 9am on monday"],
+      "automerge": false
+    },
+    {
+      "matchPackageNames": ["@types/node", "typescript"],
+      "groupName": "typescript",
+      "description": "Group TypeScript related updates"
+    },
+    {
+      "matchPackageNames": ["eslint", "@eslint/**", "eslint-*"],
+      "groupName": "eslint",
+      "description": "Group ESLint related updates"
+    },
+    {
+      "matchPackageNames": ["prettier", "prettier-*"],
+      "groupName": "prettier",
+      "description": "Group Prettier related updates"
+    },
+    {
+      "matchPackageNames": ["@sanity/**", "sanity"],
+      "groupName": "sanity",
+      "description": "Group Sanity related updates"
+    },
+    {
+      "matchPackageNames": ["next", "@next/**"],
+      "groupName": "nextjs",
+      "description": "Group Next.js related updates"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "groupName": "react",
+      "description": "Group React related updates"
+    },
+    {
+      "matchPackageNames": ["turbo", "@turbo/**"],
+      "groupName": "turbo",
+      "description": "Group Turbo related updates"
+    }
+  ],
+  "labels": ["dependencies"],
+  "assignees": [],
+  "reviewers": [],
+  "timezone": "America/New_York",
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps"
+}
