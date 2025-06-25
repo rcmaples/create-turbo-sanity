@@ -34,7 +34,7 @@
     "directory": "packages/create-turbo-sanity"
   },
   "license": "MIT",
-  "author": "RC Maples <rc.maples@gmail.com>",
+  "author": "RC Maples <rc@rcmaples.io>",
   "bin": "./index.js",
   "files": [
     "index.js",
@@ -60,6 +60,6 @@
     "validate-npm-package-name": "^5.0.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }
