@@ -15,9 +15,9 @@
     "scaffold",
     "cli"
   ],
-  "homepage": "https://github.com/rc-maples/create-turbo-sanity",
+  "homepage": "https://github.com/rcmaples/create-turbo-sanity",
   "bugs": {
-    "url": "https://github.com/rc-maples/create-turbo-sanity/issues"
+    "url": "https://github.com/rcmaples/create-turbo-sanity/issues"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rc-maples/create-turbo-sanity.git",
+    "url": "git+https://github.com/rcmaples/create-turbo-sanity.git",
     "directory": "packages/create-turbo-sanity"
   },
   "license": "MIT",
