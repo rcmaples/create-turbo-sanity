@@ -18,7 +18,7 @@
       ]
     ],
     "scope-enum": [
-      2,
+      1,
       "always",
       [
         "template",
@@ -30,9 +30,9 @@
         "release"
       ]
     ],
-    "subject-min-length": [2, "always", 10],
+    "subject-min-length": [1, "always", 5],
     "subject-max-length": [2, "always", 72],
-    "subject-case": [2, "always", "lower-case"],
+    "subject-case": [1, "always", "lower-case"],
     "header-max-length": [2, "always", 100]
   }
 }
