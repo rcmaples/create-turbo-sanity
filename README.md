@@ -83,7 +83,7 @@ npm create turbo-sanity my-blog --yes --project abc123 --dataset production
 After creating your project:
 
 ```bash
-cd my-app
+cd my-blog
 pnpm dev
 ```
 
@@ -141,17 +141,17 @@ This project follows [Semantic Versioning](https://semver.org/) with automated r
 
 ## Requirements
 
-- **Node.js** 18 or later
+- **Node.js** 22 or later
 - **Package Manager**: npm, yarn, or pnpm
 - **Sanity Account**: Free at [sanity.io](https://www.sanity.io/)
 
 ## Support
 
-- 📚 [Documentation](https://github.com/your-username/create-turbo-sanity/blob/main/README.md)
-- 🐛 [Report Issues](https://github.com/your-username/create-turbo-sanity/issues)
-- 💬 [Discussions](https://github.com/your-username/create-turbo-sanity/discussions)
+- 📚 [Documentation](https://github.com/rcmaples/create-turbo-sanity/blob/main/README.md)
+- 🐛 [Report Issues](https://github.com/rcmaples/create-turbo-sanity/issues)
+- 💬 [Discussions](https://github.com/rcmaples/create-turbo-sanity/discussions)
 - 🚀 [Sanity Community](https://www.sanity.io/community)
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License

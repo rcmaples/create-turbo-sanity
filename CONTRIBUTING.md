@@ -16,7 +16,7 @@ Thank you for your interest in contributing to Create Turbo Sanity! This guide w
 ## Development Setup
 
 ### Prerequisites
-- Node.js 18 or later
+- Node.js 22 or later
 - PNPM 10.12.3 or later
 - Git
 - A Sanity.io account for testing
