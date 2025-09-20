@@ -21,12 +21,12 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/inquirer": "^9.0.7",
-    "@types/node": "^20.10.6",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^24.5.2",
     "@types/validate-npm-package-name": "^4.0.2",
-    "eslint": "^8.56.0",
-    "eslint-plugin-vitest-globals": "^1.4.0",
-    "vitest": "^1.1.0"
+    "eslint": "^9.36.0",
+    "eslint-plugin-vitest-globals": "^1.5.0",
+    "vitest": "^3.2.4"
   },
   "repository": {
     "type": "git",
@@ -48,16 +48,16 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@sanity/cli": "^3.94.2",
-    "@sanity/client": "^7.6.0",
-    "chalk": "^4.1.2",
-    "commander": "^9.4.1",
-    "cross-spawn": "^7.0.3",
-    "fs-extra": "^11.1.1",
-    "inquirer": "^8.2.5",
-    "ora": "^5.4.1",
+    "@sanity/cli": "^4.9.0",
+    "@sanity/client": "^7.11.2",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.1",
+    "cross-spawn": "^7.0.6",
+    "fs-extra": "^11.3.2",
+    "inquirer": "^12.9.6",
+    "ora": "^9.0.0",
     "resolve-pkg": "^2.0.0",
-    "validate-npm-package-name": "^5.0.0"
+    "validate-npm-package-name": "^6.0.2"
   },
   "engines": {
     "node": ">=22"
