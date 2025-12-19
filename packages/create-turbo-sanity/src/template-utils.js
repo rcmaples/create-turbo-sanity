@@ -5,27 +5,27 @@ const path = require('path')
 const ora = require('ora')
 
 async function createProjectStructure(projectDir, config) {
-  const { template } = config
-  
+  const {template} = config
+
   const spinner = ora('Creating project structure...').start()
-  
+
   try {
     // Ensure project directory exists
     await fs.ensureDir(projectDir)
-    
+
     // Copy template files
     const templateDir = path.join(__dirname, '..', 'templates', template)
-    
-    if (!await fs.pathExists(templateDir)) {
+
+    if (!(await fs.pathExists(templateDir))) {
       throw new Error(`Template "${template}" not found`)
     }
-    
+
     // Copy all template files
     await fs.copy(templateDir, projectDir)
-    
+
     // Process template files (replace placeholders)
     await processTemplateFiles(projectDir, config)
-    
+
     spinner.succeed('Project structure created')
   } catch (error) {
     spinner.fail('Failed to create project structure')
@@ -34,23 +34,23 @@ async function createProjectStructure(projectDir, config) {
 }
 
 async function processTemplateFiles(projectDir, config) {
-  const { projectName, displayName, projectId, datasetName } = config
-  
+  const {projectName, displayName, projectId, datasetName} = config
+
   // Files that need template processing
   const filesToProcess = [
     'package.json',
     'apps/web/package.json',
     'apps/studio/package.json',
     'apps/studio/sanity.config.ts',
-    'README.md'
+    'README.md',
   ]
-  
+
   for (const filePath of filesToProcess) {
     const fullPath = path.join(projectDir, filePath)
-    
+
     if (await fs.pathExists(fullPath)) {
       let content = await fs.readFile(fullPath, 'utf8')
-      
+
       // Replace template variables
       content = content
         .replace(/{{PROJECT_NAME}}/g, projectName)
@@ -59,7 +59,7 @@ async function processTemplateFiles(projectDir, config) {
         .replace(/{{DATASET_NAME}}/g, datasetName)
         .replace(/your-project-id/g, projectId)
         .replace(/production/g, datasetName)
-      
+
       await fs.writeFile(fullPath, content)
     }
   }
@@ -67,15 +67,15 @@ async function processTemplateFiles(projectDir, config) {
 
 async function updateEnvFiles(projectDir, projectId, datasetName) {
   const envFiles = [
-    { path: '.env', template: rootEnvTemplate },
-    { path: 'apps/web/.env', template: webEnvTemplate },
-    { path: 'apps/studio/.env', template: studioEnvTemplate }
+    {path: '.env', template: rootEnvTemplate},
+    {path: 'apps/web/.env', template: webEnvTemplate},
+    {path: 'apps/studio/.env', template: studioEnvTemplate},
   ]
-  
-  for (const { path: envPath, template } of envFiles) {
+
+  for (const {path: envPath, template} of envFiles) {
     const fullPath = path.join(projectDir, envPath)
     const content = template(projectId, datasetName)
-    
+
     await fs.writeFile(fullPath, content)
   }
 }
@@ -124,5 +124,5 @@ SANITY_STUDIO_HOST=
 
 module.exports = {
   createProjectStructure,
-  updateEnvFiles
+  updateEnvFiles,
 }

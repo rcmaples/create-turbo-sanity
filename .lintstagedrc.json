@@ -1,16 +1,6 @@
 {
-  "*.{js,jsx,ts,tsx}": [
-    "eslint --fix",
-    "prettier --write"
-  ],
-  "*.{json,md,yml,yaml}": [
-    "prettier --write"
-  ],
-  "packages/create-turbo-sanity/**/*.js": [
-    "eslint --fix",
-    "prettier --write"
-  ],
-  "*.md": [
-    "prettier --write"
-  ]
+  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "*.{json,md,yml,yaml}": ["prettier --write"],
+  "packages/create-turbo-sanity/**/*.js": ["eslint --fix", "prettier --write"],
+  "*.md": ["prettier --write"]
 }
