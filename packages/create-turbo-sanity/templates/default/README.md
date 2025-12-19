@@ -26,15 +26,17 @@ A modern monorepo starter built with:
 ## Getting Started
 
 1. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 2. **Start development servers:**
+
    ```bash
    pnpm dev
    ```
-   
+
    This will start:
    - Next.js app at http://localhost:3000
    - Sanity Studio at http://localhost:3333
@@ -53,6 +55,7 @@ A modern monorepo starter built with:
 ## Sanity Configuration
 
 Your Sanity project details:
+
 - **Project ID:** {{PROJECT_ID}}
 - **Dataset:** {{DATASET_NAME}}
 
@@ -61,6 +64,7 @@ Your Sanity project details:
 The following environment variables are configured:
 
 ### Apps/Web (.env)
+
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID={{PROJECT_ID}}
 NEXT_PUBLIC_SANITY_DATASET={{DATASET_NAME}}
@@ -68,6 +72,7 @@ SANITY_API_READ_TOKEN=
 ```
 
 ### Apps/Studio (.env)
+
 ```
 SANITY_STUDIO_PROJECT_ID={{PROJECT_ID}}
 SANITY_STUDIO_DATASET={{DATASET_NAME}}
@@ -96,6 +101,7 @@ SANITY_STUDIO_HOST=
 Deploy your Sanity Studio
 
 Deploy your Sanity Studio:
+
 ```bash
 pnpm sanity:deploy
 ```

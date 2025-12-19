@@ -1,4 +1,4 @@
-import { vi } from 'vitest'
+import {vi} from 'vitest'
 
 // Global test setup
 globalThis.vi = vi
@@ -8,5 +8,5 @@ globalThis.console = {
   ...console,
   log: vi.fn(),
   warn: vi.fn(),
-  error: vi.fn()
+  error: vi.fn(),
 }

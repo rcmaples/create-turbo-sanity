@@ -16,6 +16,7 @@ Thank you for your interest in contributing to Create Turbo Sanity! This guide w
 ## Development Setup
 
 ### Prerequisites
+
 - Node.js 22 or later
 - PNPM 10.12.3 or later
 - Git
@@ -24,17 +25,20 @@ Thank you for your interest in contributing to Create Turbo Sanity! This guide w
 ### Initial Setup
 
 1. **Fork and clone the repository**
+
    ```bash
    git clone https://github.com/your-username/create-turbo-sanity.git
    cd create-turbo-sanity
    ```
 
 2. **Install dependencies**
+
    ```bash
    pnpm install
    ```
 
 3. **Set up git hooks**
+
    ```bash
    npx husky install
    ```
@@ -90,6 +94,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for automate
 ```
 
 ### Types
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -102,6 +107,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/) for automate
 - `revert`: Revert previous commit
 
 ### Scopes
+
 - `template`: Changes to project templates
 - `cli`: Changes to CLI tool logic
 - `deps`: Dependency updates
@@ -137,11 +143,11 @@ Our release process is **fully automated** using semantic versioning:
 ### How Releases Work
 
 1. **Commit Analysis**: Semantic Release analyzes commit messages
-2. **Version Calculation**: 
+2. **Version Calculation**:
    - `fix:` → patch release (1.0.1)
-   - `feat:` → minor release (1.1.0)  
+   - `feat:` → minor release (1.1.0)
    - `feat!:` or `BREAKING CHANGE:` → major release (2.0.0)
-3. **Automated Publishing**: 
+3. **Automated Publishing**:
    - Updates `package.json` version
    - Generates changelog
    - Creates GitHub release
@@ -151,6 +157,7 @@ Our release process is **fully automated** using semantic versioning:
 ### Release Triggers
 
 Releases are triggered automatically when:
+
 - Commits are pushed to the `main` branch
 - The CI tests pass
 - At least one commit follows conventional format
@@ -210,7 +217,7 @@ To update dependencies manually:
 cd packages/create-turbo-sanity/templates/default
 pnpm update
 
-# Update CLI dependencies  
+# Update CLI dependencies
 cd packages/create-turbo-sanity
 pnpm update
 
@@ -259,6 +266,7 @@ pnpm build
 ### CI Testing
 
 Our GitHub Actions automatically test:
+
 - Code linting and formatting
 - TypeScript compilation
 - Template generation
@@ -269,6 +277,7 @@ Our GitHub Actions automatically test:
 ### Before Submitting
 
 1. **Create a feature branch**
+
    ```bash
    git checkout -b feat/your-feature-name
    ```
@@ -276,6 +285,7 @@ Our GitHub Actions automatically test:
 2. **Make your changes** following our coding standards
 
 3. **Test thoroughly**
+
    ```bash
    pnpm test
    pnpm lint
@@ -292,6 +302,7 @@ Our GitHub Actions automatically test:
 ### Submitting a PR
 
 1. **Push your branch**
+
    ```bash
    git push origin feat/your-feature-name
    ```
@@ -305,7 +316,7 @@ Our GitHub Actions automatically test:
 ### PR Requirements
 
 - ✅ All CI checks pass
-- ✅ Code follows style guidelines  
+- ✅ Code follows style guidelines
 - ✅ Tests are included for new features
 - ✅ Documentation is updated
 - ✅ Conventional commit format
@@ -408,6 +419,7 @@ When updating the CLI:
 ## Recognition
 
 Contributors are recognized in:
+
 - Release notes and changelogs
 - GitHub contributor graphs
 - Special thanks in documentation

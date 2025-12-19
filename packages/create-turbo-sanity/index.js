@@ -2,16 +2,18 @@
 
 const path = require('node:path')
 const fs = require('node:fs')
-const { program } = require('commander')
+const {program} = require('commander')
 const chalk = require('chalk')
 const spawn = require('cross-spawn')
 const inquirer = require('inquirer')
 const ora = require('ora')
 const validateProjectName = require('validate-npm-package-name')
-const { authenticateUser, selectOrCreateProject, selectOrCreateDataset } = require('./src/sanity-utils')
-const { createProjectStructure, updateEnvFiles } = require('./src/template-utils')
-
-
+const {
+  authenticateUser,
+  selectOrCreateProject,
+  selectOrCreateDataset,
+} = require('./src/sanity-utils')
+const {createProjectStructure, updateEnvFiles} = require('./src/template-utils')
 
 program
   .name('create-turbo-sanity')
@@ -39,25 +41,25 @@ async function createTurboSanityApp(name, options) {
   console.log(chalk.blue('🔐 Authenticating with Sanity...'))
   const user = await authenticateUser(options)
   console.log()
-  
+
   // Step 2: Select or create project
   console.log(chalk.blue('📋 Setting up Sanity project...'))
   console.log('Fetching existing projects...')
-  const { projectId, displayName, isFirstProject } = await selectOrCreateProject(user, options)
+  const {projectId, displayName, isFirstProject} = await selectOrCreateProject(user, options)
   console.log(chalk.green(`✅ Using project: ${displayName} (${projectId})`))
   console.log()
-  
+
   // Step 3: Select or create dataset
   console.log(chalk.blue('📈 Setting up dataset...'))
-  const { datasetName } = await selectOrCreateDataset(projectId, options)
+  const {datasetName} = await selectOrCreateDataset(projectId, options)
   console.log(chalk.green(`✅ Using dataset: ${datasetName}`))
   console.log()
-  
+
   // Step 4: Get project directory
   const projectDir = await getProjectDirectory(name, options)
   console.log(chalk.green(`✅ Creating project in: ${projectDir}`))
   console.log()
-  
+
   // Step 5: Create project structure
   console.log(chalk.blue('📁 Creating project structure...'))
   await createProjectStructure(projectDir, {
@@ -65,17 +67,17 @@ async function createTurboSanityApp(name, options) {
     displayName,
     projectId,
     datasetName,
-    template: options.template || 'default'
+    template: options.template || 'default',
   })
-  
+
   // Step 6: Update environment files
   console.log(chalk.blue('🔧 Configuring environment variables...'))
   await updateEnvFiles(projectDir, projectId, datasetName)
-  
+
   // Step 7: Install dependencies
   console.log(chalk.blue('📦 Installing dependencies...'))
   await installDependencies(projectDir, options.packageManager || 'pnpm')
-  
+
   // Step 8: Success message
   console.log()
   console.log(chalk.green('✅ Success! Your Turbo + Sanity monorepo has been created.'))
@@ -91,7 +93,7 @@ async function createTurboSanityApp(name, options) {
   console.log(chalk.cyan('  pnpm sanity:deploy    ') + 'Deploy your Sanity Studio')
   console.log(chalk.cyan('  pnpm sanity:typegen   ') + 'Generate TypeScript types from your schema')
   console.log()
-  
+
   if (isFirstProject) {
     console.log(chalk.blue('Join the Sanity community: https://www.sanity.io/community/join'))
     console.log('We look forward to seeing you there!')
@@ -101,9 +103,9 @@ async function createTurboSanityApp(name, options) {
 
 async function getProjectDirectory(name, _options) {
   let projectName = name
-  
+
   if (!projectName) {
-    const { name: inputName } = await inquirer.prompt([
+    const {name: inputName} = await inquirer.prompt([
       {
         type: 'input',
         name: 'name',
@@ -115,49 +117,49 @@ async function getProjectDirectory(name, _options) {
             return validation.errors?.[0] || validation.warnings?.[0] || 'Invalid project name'
           }
           return true
-        }
-      }
+        },
+      },
     ])
     projectName = inputName
   }
-  
+
   const projectDir = path.resolve(process.cwd(), projectName)
-  
+
   // Check if directory exists
   if (fs.existsSync(projectDir)) {
     if (fs.readdirSync(projectDir).length > 0) {
-      const { proceed } = await inquirer.prompt([
+      const {proceed} = await inquirer.prompt([
         {
           type: 'confirm',
           name: 'proceed',
           message: `Directory ${projectName} already exists and is not empty. Continue?`,
-          default: false
-        }
+          default: false,
+        },
       ])
-      
+
       if (!proceed) {
         console.log(chalk.yellow('Aborted.'))
         process.exit(1)
       }
     }
   }
-  
+
   return projectDir
 }
 
 async function installDependencies(projectDir, packageManager) {
   const spinner = ora('Installing dependencies...').start()
-  
+
   try {
     const result = spawn.sync(packageManager, ['install'], {
       cwd: projectDir,
-      stdio: 'pipe'
+      stdio: 'pipe',
     })
-    
+
     if (result.status !== 0) {
       throw new Error(`${packageManager} install failed`)
     }
-    
+
     spinner.succeed('Dependencies installed successfully')
   } catch (error) {
     spinner.fail('Failed to install dependencies')

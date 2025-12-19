@@ -11,6 +11,7 @@ npm create turbo-sanity my-app
 ```
 
 This will:
+
 1. 🔐 Authenticate you with Sanity
 2. 📋 Let you select or create a Sanity project
 3. 📊 Set up datasets for your content
@@ -21,6 +22,7 @@ This will:
 ## What You Get
 
 ### Project Structure
+
 ```
 my-app/
 ├── apps/
@@ -34,6 +36,7 @@ my-app/
 ```
 
 ### Tech Stack
+
 - **[Next.js 15](https://nextjs.org/)** - React framework with App Router and React 19
 - **[Sanity](https://www.sanity.io/)** - Headless CMS with real-time collaboration
 - **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
@@ -42,6 +45,7 @@ my-app/
 - **[PNPM](https://pnpm.io/)** - Fast, disk space efficient package manager
 
 ### Features
+
 - 🚀 **Modern Development**: Latest Next.js with App Router, React 19, TypeScript
 - 📝 **Content Management**: Full-featured Sanity Studio with rich content editing
 - 🎨 **Beautiful UI**: Tailwind CSS with Typography plugin for blog-style content
@@ -59,6 +63,7 @@ npm create turbo-sanity [project-name] [options]
 ```
 
 ### Options
+
 - `--project <projectId>` - Use specific Sanity project ID
 - `--dataset <dataset>` - Use specific dataset name
 - `--organization <orgId>` - Use specific Sanity organization
@@ -67,6 +72,7 @@ npm create turbo-sanity [project-name] [options]
 - `--yes` - Skip interactive prompts, use defaults
 
 ### Examples
+
 ```bash
 # Interactive setup (recommended)
 npm create turbo-sanity my-blog
@@ -88,10 +94,12 @@ pnpm dev
 ```
 
 This starts:
+
 - **Next.js app**: http://localhost:3000
 - **Sanity Studio**: http://localhost:3333
 
 ### Available Scripts
+
 - `pnpm dev` - Start all development servers
 - `pnpm build` - Build all apps and packages
 - `pnpm lint` - Lint all code
@@ -102,27 +110,33 @@ This starts:
 ## Deployment
 
 ### Next.js App (Vercel - Recommended)
+
 1. Push your code to GitHub
 2. Import repository in [Vercel](https://vercel.com)
 3. Environment variables are automatically configured
 4. Deploy!
 
 ### Sanity Studio
+
 ```bash
 pnpm sanity:deploy
 ```
+
 Your studio will be available at `https://your-project.sanity.studio`
 
 ### Other Platforms
+
 The generated project works with any Node.js hosting provider:
+
 - Netlify
 - Railway
-- DigitalOcean App Platform  
+- DigitalOcean App Platform
 - AWS Amplify
 
 ## Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
 - Development setup
 - Commit conventions
 - Release process
@@ -135,8 +149,9 @@ This project uses [Renovate](https://renovatebot.com/) to keep dependencies up-t
 ## Versioning
 
 This project follows [Semantic Versioning](https://semver.org/) with automated releases:
+
 - `feat:` commits trigger minor releases (1.1.0)
-- `fix:` commits trigger patch releases (1.0.1)  
+- `fix:` commits trigger patch releases (1.0.1)
 - `feat!:` commits trigger major releases (2.0.0)
 
 ## Requirements

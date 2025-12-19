@@ -13,6 +13,7 @@ npm create turbo-sanity my-app
 To test this package locally:
 
 1. Link the package:
+
    ```bash
    cd packages/create-turbo-sanity
    npm link
