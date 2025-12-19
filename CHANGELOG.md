@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.4...v1.0.5) (2025-12-19)
+
+
+### Bug Fixes
+
+* **template:** update next-sanity and @sanity/image-url imports ([66fa1dc](https://github.com/rcmaples/create-turbo-sanity/commit/66fa1dca927f3d022ae8974b09ba7a3f4b922488))
+
 ## [1.0.4](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.3...v1.0.4) (2025-12-19)
 
 
