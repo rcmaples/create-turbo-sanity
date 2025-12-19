@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.3...v1.0.4) (2025-12-19)
+
+
+### Bug Fixes
+
+* **template:** correct pnpm version from 10.26.3 to 10.26.1 ([6819e2e](https://github.com/rcmaples/create-turbo-sanity/commit/6819e2e5a071b93a3f8421f53293b86ba05d7c8b))
+
 ## [1.0.3](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.2...v1.0.3) (2025-12-19)
 
 
