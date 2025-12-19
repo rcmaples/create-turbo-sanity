@@ -19,15 +19,6 @@
   "bugs": {
     "url": "https://github.com/rcmaples/create-turbo-sanity/issues"
   },
-  "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/inquirer": "^9.0.9",
-    "@types/node": "^24.5.2",
-    "@types/validate-npm-package-name": "^4.0.2",
-    "eslint": "^9.36.0",
-    "eslint-plugin-vitest-globals": "^1.5.0",
-    "vitest": "^3.2.4"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rcmaples/create-turbo-sanity.git",
@@ -47,14 +38,24 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
+  "packageManager": "pnpm@10.26.1",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^24.5.2",
+    "@types/validate-npm-package-name": "^4.0.2",
+    "eslint": "^9.39.2",
+    "eslint-plugin-vitest-globals": "^1.5.0",
+    "vitest": "^4.0.16"
+  },
   "dependencies": {
-    "@sanity/cli": "^4.9.0",
-    "@sanity/client": "^7.11.2",
+    "@sanity/cli": "^5.0.1",
+    "@sanity/client": "^7.13.2",
     "chalk": "^5.6.2",
     "commander": "^14.0.1",
     "cross-spawn": "^7.0.6",
-    "fs-extra": "^11.3.2",
-    "inquirer": "^12.9.6",
+    "fs-extra": "^11.3.3",
+    "inquirer": "^12.11.1",
     "ora": "^9.0.0",
     "resolve-pkg": "^2.0.0",
     "validate-npm-package-name": "^6.0.2"
