@@ -1,6 +1,6 @@
 {
   "name": "create-turbo-sanity",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create a new Turbo + Next.js + Sanity monorepo",
   "keywords": [
     "turbo",

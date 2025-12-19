@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.2...v1.0.3) (2025-12-19)
+
+
+### Bug Fixes
+
+* **cli:** downgrade ESM-only dependencies to CommonJS-compatible versions ([7301d74](https://github.com/rcmaples/create-turbo-sanity/commit/7301d740d703e6e5533baa1ea631ab4a91d39d8c))
+
 ## [1.0.2](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.1...v1.0.2) (2025-12-19)
 
 
