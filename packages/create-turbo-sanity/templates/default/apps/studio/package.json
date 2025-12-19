@@ -33,7 +33,7 @@
     "@sanity/eslint-config-studio": "^5.0.2",
     "@types/react": "^19.2.7",
     "@typescript-eslint/eslint-plugin": "^8.50.0",
-    "@typescript-eslint/parser": "^8.55.0",
+    "@typescript-eslint/parser": "^8.50.0",
     "@workspace/eslint-config": "workspace:*",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
