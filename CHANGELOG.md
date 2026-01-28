@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.5...v1.0.6) (2026-01-28)
+
+
+### Bug Fixes
+
+* oidc for release workflow ([fd2776c](https://github.com/rcmaples/create-turbo-sanity/commit/fd2776cb84523b5a2d90278936968f90ca064a3a))
+* **release:** remove registry-url that interferes with npm OIDC ([0a64551](https://github.com/rcmaples/create-turbo-sanity/commit/0a64551b8e307d49266c6359b0a7c8994ed6201d))
+
 ## [1.0.5](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.4...v1.0.5) (2025-12-19)
 
 
