@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.7...v1.0.8) (2026-01-28)
+
+
+### Bug Fixes
+
+* **ci:** switch to pure OIDC trusted publishing ([#15](https://github.com/rcmaples/create-turbo-sanity/issues/15)) ([3ff793f](https://github.com/rcmaples/create-turbo-sanity/commit/3ff793f86ac3da25c2dd502d9ea0a14d58cf896f))
+
 ## [1.0.7](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.6...v1.0.7) (2026-01-28)
 
 
