@@ -93,8 +93,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0
       validate-npm-package-name:
-        specifier: ^6.0.2
-        version: 6.0.2
+        specifier: ^7.0.2
+        version: 7.0.2
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.2
@@ -152,7 +152,7 @@ importers:
         version: 1.1.0
       eslint-plugin-prettier:
         specifier: ^5.5.4
-        version: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.7.4)
+        version: 5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.8.1)
       eslint-plugin-react:
         specifier: ^7.37.5
         version: 7.37.5(eslint@9.39.2(jiti@2.6.1))
@@ -164,7 +164,7 @@ importers:
         version: 12.1.1(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-turbo:
         specifier: ^2.6.3
-        version: 2.6.3(eslint@9.39.2(jiti@2.6.1))(turbo@2.6.3)
+        version: 2.6.3(eslint@9.39.2(jiti@2.6.1))(turbo@2.7.6)
       globals:
         specifier: ^16.5.0
         version: 16.5.0
@@ -4271,6 +4271,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-ms@9.3.0:
     resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
     engines: {node: '>=18'}
@@ -4819,8 +4824,18 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+  turbo-darwin-64@2.7.6:
+    resolution: {integrity: sha512-bYu0qnWju2Ha3EbIkPCk1SMLT3sltKh1P/Jy5FER6BmH++H5z+T5MHh3W1Xoers9rk4N1VdKvog9FO1pxQyjhw==}
+    cpu: [x64]
+    os: [darwin]
+
   turbo-darwin-arm64@2.6.3:
     resolution: {integrity: sha512-MwVt7rBKiOK7zdYerenfCRTypefw4kZCue35IJga9CH1+S50+KTiCkT6LBqo0hHeoH2iKuI0ldTF2a0aB72z3w==}
+    cpu: [arm64]
+    os: [darwin]
+
+  turbo-darwin-arm64@2.7.6:
+    resolution: {integrity: sha512-KCxTf3Y1hgNLYIWRLw8bwH8Zie9RyCGoxAlXYsCBI/YNqBSR+ZZK9KYzFxAqDaVaNvTwLFv3rJRGsXOFWg4+Uw==}
     cpu: [arm64]
     os: [darwin]
 
@@ -4829,8 +4844,18 @@ packages:
     cpu: [x64]
     os: [linux]
 
+  turbo-linux-64@2.7.6:
+    resolution: {integrity: sha512-vjoU8zIfNgvJR3cMitgw7inEoi6bmuVuFawDl5yKtxjAEhDktFdRBpGS3WojD4l3BklBbIK689ssXcGf21LxRA==}
+    cpu: [x64]
+    os: [linux]
+
   turbo-linux-arm64@2.6.3:
     resolution: {integrity: sha512-MterpZQmjXyr4uM7zOgFSFL3oRdNKeflY7nsjxJb2TklsYqiu3Z9pQ4zRVFFH8n0mLGna7MbQMZuKoWqqHb45w==}
+    cpu: [arm64]
+    os: [linux]
+
+  turbo-linux-arm64@2.7.6:
+    resolution: {integrity: sha512-TcMpBvTqZf+1DptrVYLbZls7WY1UVNDTGaf0bo7/GCgWYv5eZHCVo4Td7kCJeDU4glbXg67REX0md0S0V6ghMg==}
     cpu: [arm64]
     os: [linux]
 
@@ -4839,13 +4864,27 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  turbo-windows-64@2.7.6:
+    resolution: {integrity: sha512-1/MhkYldiihjneY8QnnDMbAkHXn/udTWSVYS94EMlkE9AShozsLTTOT1gDOpX06EfEW5njP09suhMvxbvwuwpQ==}
+    cpu: [x64]
+    os: [win32]
+
   turbo-windows-arm64@2.6.3:
     resolution: {integrity: sha512-dDHVKpSeukah3VsI/xMEKeTnV9V9cjlpFSUs4bmsUiLu3Yv2ENlgVEZv65wxbeE0bh0jjpmElDT+P1KaCxArQQ==}
     cpu: [arm64]
     os: [win32]
 
+  turbo-windows-arm64@2.7.6:
+    resolution: {integrity: sha512-0wDVnUJLFAWm4ZzOQFDkbyyUqaszorTGf3Rdc22IRIyJTTLd6ajqdb+cWD89UZ1RKr953+PZR1gqgWQY4PDuhA==}
+    cpu: [arm64]
+    os: [win32]
+
   turbo@2.6.3:
     resolution: {integrity: sha512-bf6YKUv11l5Xfcmg76PyWoy/e2vbkkxFNBGJSnfdSXQC33ZiUfutYh6IXidc5MhsnrFkWfdNNLyaRk+kHMLlwA==}
+    hasBin: true
+
+  turbo@2.7.6:
+    resolution: {integrity: sha512-PO9AvJLEsNLO+EYhF4zB+v10hOjsJe5kJW+S6tTbRv+TW7gf1Qer4mfjP9h3/y9h8ZiPvOrenxnEgDtFgaM5zw==}
     hasBin: true
 
   type-check@0.4.0:
@@ -4988,9 +5027,9 @@ packages:
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
 
-  validate-npm-package-name@6.0.2:
-    resolution: {integrity: sha512-IUoow1YUtvoBBC06dXs8bR8B9vuA3aJfmQNKMoaPG/OFsPmoQvw8xh+6Ye25Gx9DQhoEom3Pcu9MKHerm/NpUQ==}
-    engines: {node: ^18.17.0 || >=20.5.0}
+  validate-npm-package-name@7.0.2:
+    resolution: {integrity: sha512-hVDIBwsRruT73PbK7uP5ebUt+ezEtCmzZz3F59BSr2F6OVFnJ/6h8liuvdLrQ88Xmnk6/+xGGuq+pG9WwTuy3A==}
+    engines: {node: ^20.17.0 || >=22.9.0}
 
   vite-tsconfig-paths@5.1.4:
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
@@ -8215,10 +8254,10 @@ snapshots:
 
   eslint-plugin-only-warn@1.1.0: {}
 
-  eslint-plugin-prettier@5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.7.4):
+  eslint-plugin-prettier@5.5.4(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.8.1):
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
-      prettier: 3.7.4
+      prettier: 3.8.1
       prettier-linter-helpers: 1.0.0
       synckit: 0.11.11
     optionalDependencies:
@@ -8254,11 +8293,11 @@ snapshots:
     dependencies:
       eslint: 9.39.2(jiti@2.6.1)
 
-  eslint-plugin-turbo@2.6.3(eslint@9.39.2(jiti@2.6.1))(turbo@2.6.3):
+  eslint-plugin-turbo@2.6.3(eslint@9.39.2(jiti@2.6.1))(turbo@2.7.6):
     dependencies:
       dotenv: 16.0.3
       eslint: 9.39.2(jiti@2.6.1)
-      turbo: 2.6.3
+      turbo: 2.7.6
 
   eslint-plugin-vitest-globals@1.5.0: {}
 
@@ -9692,6 +9731,8 @@ snapshots:
 
   prettier@3.7.4: {}
 
+  prettier@3.8.1: {}
+
   pretty-ms@9.3.0:
     dependencies:
       parse-ms: 4.0.0
@@ -10348,19 +10389,37 @@ snapshots:
   turbo-darwin-64@2.6.3:
     optional: true
 
+  turbo-darwin-64@2.7.6:
+    optional: true
+
   turbo-darwin-arm64@2.6.3:
+    optional: true
+
+  turbo-darwin-arm64@2.7.6:
     optional: true
 
   turbo-linux-64@2.6.3:
     optional: true
 
+  turbo-linux-64@2.7.6:
+    optional: true
+
   turbo-linux-arm64@2.6.3:
+    optional: true
+
+  turbo-linux-arm64@2.7.6:
     optional: true
 
   turbo-windows-64@2.6.3:
     optional: true
 
+  turbo-windows-64@2.7.6:
+    optional: true
+
   turbo-windows-arm64@2.6.3:
+    optional: true
+
+  turbo-windows-arm64@2.7.6:
     optional: true
 
   turbo@2.6.3:
@@ -10371,6 +10430,15 @@ snapshots:
       turbo-linux-arm64: 2.6.3
       turbo-windows-64: 2.6.3
       turbo-windows-arm64: 2.6.3
+
+  turbo@2.7.6:
+    optionalDependencies:
+      turbo-darwin-64: 2.7.6
+      turbo-darwin-arm64: 2.7.6
+      turbo-linux-64: 2.7.6
+      turbo-linux-arm64: 2.7.6
+      turbo-windows-64: 2.7.6
+      turbo-windows-arm64: 2.7.6
 
   type-check@0.4.0:
     dependencies:
@@ -10504,7 +10572,7 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  validate-npm-package-name@6.0.2: {}
+  validate-npm-package-name@7.0.2: {}
 
   vite-tsconfig-paths@5.1.4(typescript@5.9.3)(vite@7.3.0(@types/node@24.10.4)(jiti@2.6.1)(yaml@2.8.2)):
     dependencies:
