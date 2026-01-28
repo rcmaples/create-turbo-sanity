@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a CLI package (`create-turbo-sanity`) that scaffolds modern Turborepo + Next.js + Sanity CMS projects. The generated projects follow a monorepo structure with strict conventions and automated tooling.
 
+## Claude Behavior Requirements
+
+- **Package versions**: Always run `pnpm outdated` and/or `pnpm view <package>` to verify actual versions before suggesting any package upgrades or changes. Do not make assumptions about latest versions or compatibility without verification.
+
 ## Essential Commands
 
 ### Development
