@@ -30,7 +30,9 @@
     [
       "@semantic-release/npm",
       {
-        "pkgRoot": "packages/create-turbo-sanity"
+        "pkgRoot": "packages/create-turbo-sanity",
+        "npmPublish": true,
+        "provenance": true
       }
     ],
     [
