@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.6...v1.0.7) (2026-01-28)
+
+
+### Bug Fixes
+
+* **ci:** add NPM_TOKEN to release workflow ([afc499a](https://github.com/rcmaples/create-turbo-sanity/commit/afc499abce2676d04b250a960e60f4132e07293e))
+
 ## [1.0.6](https://github.com/rcmaples/create-turbo-sanity/compare/v1.0.5...v1.0.6) (2026-01-28)
 
 
