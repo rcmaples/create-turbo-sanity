@@ -60,7 +60,7 @@
     "inquirer": "^8.2.7",
     "ora": "^5.4.1",
     "resolve-pkg": "^2.0.0",
-    "validate-npm-package-name": "^6.0.2"
+    "validate-npm-package-name": "^7.0.2"
   },
   "engines": {
     "node": ">=22"
